@@ -1,0 +1,20 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "PegionCloud Backend Server",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js",
+    "serve": "node index.js"
+  },
+  "author": "Mohd Saqib",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "mongoose": "^8.3.3",
+    "multer": "^1.4.5-lts.1",
+    "nodemon": "^3.1.0",
+    "uuid": "^9.0.1"
+  }
+}
