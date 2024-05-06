@@ -1,13 +1,15 @@
 # Pegioncloud
  File hosting and sharing service
 
-# Setting up repository locally
+# Setting up the repository locally
 
 - Step 1: Clone the repo
 
   Go to the directory where you want to setup this project locally then run
   
-  `git clone https://github.com/Saqib-ai06/pegioncloud.git `
+  ```
+  git clone https://github.com/Saqib-ai06/pegioncloud.git 
+  ```
 
 ## Setting up the Backend
 
