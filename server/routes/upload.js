@@ -1,65 +1,89 @@
 const router = require('express').Router();
 const multer = require('multer');
 const { v4: uuid4 } = require('uuid');
+const fs = require('fs');
 
+const randomString = require("randomstring");
 const FileSchema = require('../models/FileSchema');
 
 const storage = multer.diskStorage({
-    destination: (req, files, cb) => {
+    destination: (req, file, cb) => {
         cb(null, './uploads')
     },
-    filename: (req, files, cb) => {
-        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
-        cb(null, files.filename + '-' + uniqueSuffix)
+    filename: (req, file, cb) => {
+        cb(null, file.originalname)
     }
 });
 
 let upload = multer({
     storage,
     limit: {
-        fileSize: 1024*1024*100
+        fileSize: 1024 * 1024 * 100 // 100MB
     }
-}).single('uploadFile');
+})
+// .array('uploadFile', 10);
 
 router.post('/', (req, res) => {
     // Store file
-    upload(req, res, async (err) => {
+    upload.array('uploadFile', 10)(req, res, async (err) => {
+
+
         // Data Validation
-        if (!req.file) {
-            console.log('All feilds are required!');
-            return res.json({ error: 'All feilds are required!' });
-        }
-        
-        if(err) {
-            console.log(err.message)
-            return res.status(500).send({error: err.message});
+        if (err instanceof multer.MulterError) {
+            // A Multer error occurred when uploading.
+            res.status(500).send({ error: { message: `Multer uploading error: ${err.message}` } }).end();
+            return;
+        } else if (err) {
+            // An unknown error occurred when uploading.
+            if (err.name == 'ExtensionError') {
+                res.status(413).send({ error: { message: err.message } }).end();
+            } else {
+                res.status(500).send({ error: { message: `unknown uploading error: ${err.message}` } }).end();
+            }
+            return;
         }
 
-        // Store in database
-        console.log(req.file.filename);
-        console.log(req.file.path);
-        console.log(req.file.size);
+        // Retrieve uploaded files
+        let shortURL = randomString.generate(8);
+        let dir = `./uploads/${shortURL}/`;
+        let files = req.files;
 
-        const file = new FileSchema({
-            filename: req.file.filename,
-            path: req.file.path,
-            size: req.file.size,
-            uuid: uuid4()
+        fs.mkdir(dir, (err) => {
+            if (err) {
+                console.log('Unable to create directory!');
+            }
+            console.log(`${shortURL} Directory Created Succesfully`);
         });
-        console.log("New Schema object created!");
+
+        files.forEach(async (File) => {
+            let fileName = File.originalname;
+            let newPath = dir + fileName;
+            fs.rename(File.path, newPath, (err) => {
+                if (err) {
+                    console.log('Unable to move file!\n' + err.message);
+                }
+                console.log(`File moved succesfully to ${newPath}`);
+            });
+
+            // console.log("OriginalName: " + fileName);
+            // console.log("Path: " + File.path);
+            // console.log("Debug: " + File);
+
+            // Store in database
+            const file = new FileSchema({
+                filename: File.filename,
+                path: newPath,
+                size: File.size,
+                uuid: uuid4()
+            });
+            file.save();
+        });
 
         // Response -> Download link & QR
-        const response = await file.save();
-        let responseURL = `${process.env.APP_BASE_URL}/files/${response.uuid}`;
-        console.log(response);
-        console.log(responseURL);
-        return res.json({ file: responseURL});
-        // http://localhost:3000/files/a618b3bf-f67f-4c27-ad2f-713a01195c6b
-        // TODO: Make the link smaller
+        let responseURL = `${process.env.APP_BASE_URL}/f/${shortURL}`;
+        // console.log(responseURL);
+        return res.json({ downloadURL: responseURL });
     });
-    
-
-
 });
 
 module.exports = router;

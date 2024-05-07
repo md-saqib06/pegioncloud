@@ -2,3 +2,5 @@
 .env
 # Ignore node_modules folder
 node_modules
+# Ignore contents of uploads folder
+uploads/
