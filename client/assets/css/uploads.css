@@ -1,0 +1,52 @@
+@import url('./main.css');
+
+.mailbox {
+    height: 300px;
+    width: 650px;
+    color: white;
+    font-family: RobotoBold;
+    border-style: solid;
+    border-width: 2px;
+    border-color: var(--secondary-color);
+    border-radius: 10px;
+    margin-top: 10%;
+    margin-left: 10%;
+    background: rgba(0, 0, 0, .5);
+}
+
+.mailheading {
+    font-size: 25px;
+}
+
+.mailform {
+    margin-top: 20px;
+    margin-left: 80px;
+    font-size: 20px;
+}
+
+.btnwrapper {
+    width: 100%;
+    margin-top: 10%;
+    display: flex;
+    justify-content: center;
+}
+
+.sendbtn {
+    background: rgba(0, 0, 0, .5); 
+    border-radius: 10px;
+    border-color: white;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+}
+
+.input {
+    margin-left: 20px;
+    margin-top: 10px;
+    width: 300px;
+    border: none;
+    /* border-bottom: 2px solid white; */
+}

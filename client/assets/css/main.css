@@ -1,0 +1,117 @@
+:root {
+    --primary-color: #060028;
+    --secondary-color: #584ED5;
+    --border-color: #FCFCFE;
+    --text-color: #FFFFFF;
+}
+
+/* Downloaded Fonts */
+@font-face {
+    font-family: "PlanetComic";
+    src: url("../fonts/PlanetComic.ttf");
+}
+
+@font-face {
+    font-family: "Nunito";
+    src: url("../fonts/Nunito-VariableFont_wght.ttf");
+}
+
+@font-face {
+    font-family: "OpenSans";
+    src: url("../fonts/OpenSans-VariableFont_wdth.ttf");
+}
+
+@font-face {
+    font-family: "UbuntuSans";
+    src: url("../fonts/UbuntuSans-Italic-VariableFont_wdth.ttf");
+}
+
+@font-face {
+    font-family: "RobotoSlab";
+    src: url("../fonts/RobotoSlab-VariableFont_wght.ttf");
+}
+
+@font-face {
+    font-family: "RobotoBold";
+    src: url("../fonts/Roboto-Black.ttf");
+}
+
+@font-face {
+    font-family: "RobotoRegular";
+    src: url("../fonts/Roboto-Regular.ttf");
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body, html {
+    background: var(--primary-color);
+    height: 100%;
+    background-image: url("../images/behind_LOGO_PGN.png");
+    background-repeat: no-repeat;
+    /* background-size: 100%; */
+}
+
+.body {
+    font-family: sans-serif;
+}
+
+.wrapper {
+    height: 100%;
+
+}
+
+/* NavBar */
+header {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+nav ul {
+    list-style: none;
+    overflow: hidden;
+    color: white;
+    padding: 0;
+    text-align: center;
+    margin: 0;
+    transition: 1s;
+}
+
+nav ul li {
+    display: inline-block;
+    padding: 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    font-family: Nunito;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.active {
+    text-decoration:underline;
+}
+
+/* Page Border */
+.border {
+    margin: 24px;
+    margin-top: 0px;
+    height: auto;
+    width: cals(100%-16px);
+    align-items: center;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 18px;
+    background: rgba(0, 0, 0, 0);
+    border-color: var(--border-color);
+    background-color: transparent;
+}
+

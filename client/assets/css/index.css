@@ -1,0 +1,67 @@
+@import url('./main.css');
+
+/* Body */
+.mainTextWrapper {
+    margin-top: 12%;
+    margin-bottom: 15%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.mainText {
+    color: white; 
+    margin-left: 10%;
+}
+
+.pegion {
+    font-size: 160px;
+    font-family: PlanetComic;
+}
+
+.subtext {
+    display: flex;
+    align-items: center;
+}
+
+.cloud {
+    font-size: 35px;
+    font-family: RobotoBold;
+    font-weight: bold;
+    letter-spacing: 6px;
+}
+
+.service {
+    font-size: 22px;
+    font-family: RobotoRegular;
+    font-style: normal;
+    margin-left: 10px;
+}
+
+.sometext {
+    margin-top: 10px;
+    font-size: 18px;
+    font-family: RobotoBold;
+}
+
+.uploadbtn {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.uploadbtn a {
+    margin-top: 50px;
+    padding: 10px;
+    /* border-style: solid;
+    border-width: 2px; */
+    border-radius: 10px;
+    text-decoration: none;
+    background-color: white;
+    color: var(--primary-color);
+    font-size: 25px;
+    font-family: Nunito;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
