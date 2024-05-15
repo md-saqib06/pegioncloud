@@ -1,7 +1,7 @@
-# Pegioncloud - OUTDATED
+# Pegioncloud
  File hosting and sharing service
 
-# Setting up the repository locally
+# Setting up the repository locally - OUTDATED
 
 - Step 1: Clone the repo
 
