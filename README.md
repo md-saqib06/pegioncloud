@@ -1,4 +1,4 @@
-# Pegioncloud
+# Pegioncloud - OUTDATED
  File hosting and sharing service
 
 # Setting up the repository locally
