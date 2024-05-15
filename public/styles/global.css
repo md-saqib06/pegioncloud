@@ -1,0 +1,14 @@
+:root {
+    --primary-color: #060028;
+    --secondary-color: #584ED5;
+    --border-color: #FCFCFE;
+    --text-color: #FFFFFF;
+}
+
+.primary-color {
+    background-color: var(--primary-color);
+}
+
+.navbg {
+    background: rgba(0, 0, 0, .1);
+}

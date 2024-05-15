@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="../style.css" rel="stylesheet">
+  <link rel="stylesheet" href="../styles/global.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/rippleui@1.12.1/dist/css/styles.css" />
+  <title>PegionCloud - Upload</title>
+</head>
+
+<body class="h-screen bg-cover bg-no-repeat primary-color"
+  style="background-image: url('../assets/images/behind_LOGO_PGN.png');">
+
+  <div class="h-full overflow-hidden">
+    <!-- NavBar -->
+    <nav>
+      <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+        <a href="../index.html" class="flex items-center space-x-3 rtl:space-x-reverse">
+          <img src="../assets/images/logo.svg" class="h-8" alt="PegionCloud Logo" />
+        </a>
+        <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+          <button data-collapse-toggle="navbar-cta" type="button"
+            class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+            aria-controls="navbar-cta" aria-expanded="false">
+            <span class="sr-only">Open main menu</span>
+            <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M1 1h15M1 7h15M1 13h15" />
+            </svg>
+          </button>
+        </div>
+        <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-cta">
+          <ul
+            class="flex flex-col bg-transparent font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0">
+            <li>
+              <a href="../index.html"
+                class="block py-2 px-3 md:p-0 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Home</a>
+            </li>
+            <li>
+              <a href="upload.html"
+                class="block py-2 px-3 md:p-0 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:dark:text-blue-500"
+                aria-current="page">Upload</a>
+            </li>
+            <li>
+              <a href="contact.html"
+                class="block py-2 px-3 md:p-0 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- NavBar End -->
+
+    <!-- File Upload Area -->
+    <div class="flex flex-col items-center lg:items-start justify-center lg:justify-start h-full w-full">
+      <div id="containerUploaded"
+        class="flex flex-col items-center justify-center w-2/3 lg:w-1/3 h-3/4 lg:h-3/4 border-2 border-gray-300 rounded-lg bg-gray-50 dark:bg-white/5 dark:border-gray-600 lg:ml-52 lg:mt-20">
+
+
+        <div class="flex flex-col items-center justify-center w-10/12 h-full">
+          <label for="dropzone-file" id="drop-area"
+            class=" flex flex-col items-center justify-center w-full h-80 border-2 border-gray-300 border-dashed dark:border-gray-600 dark:hover:border-gray-500  rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-white/5 hover:bg-white/10 dark:hover:bg-white/10 lg:ml-0 lg:mt-0">
+            <div id="img-view" class="flex flex-col items-center justify-center pt-5 pb-6">
+              <svg id="cloud" class="w-12 h-12 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2" />
+              </svg>
+              <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Click to
+                  upload</span>
+                or drag and drop
+              </p>
+              <p class="text-xs text-gray-500 dark:text-gray-400">10 Files at a Time (MAX 100 MB Each)</p>
+            </div>
+            <input id="dropzone-file" type="file" class="hidden" multiple="multiple" />
+          </label>
+          <!-- File Uploading Progress Form -->
+          <div class="hidden w-11/12 lg:w-80 mt-3" id="progressBar">
+            <!-- Uploading File Content -->
+            <div class="mb-2 flex justify-between">
+              <div class="flex items-center gap-x-3">
+                <svg id="progress-logo" class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                  <path fill-rule="evenodd"
+                    d="M12 3a1 1 0 0 1 .78.375l4 5a1 1 0 1 1-1.56 1.25L13 6.85V14a1 1 0 1 1-2 0V6.85L8.78 9.626a1 1 0 1 1-1.56-1.25l4-5A1 1 0 0 1 12 3ZM9 14v-1H5a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2h-4v1a3 3 0 1 1-6 0Zm8 2a1 1 0 1 0 0 2h.01a1 1 0 1 0 0-2H17Z"
+                    clip-rule="evenodd" />
+                </svg>
+
+
+                </span>
+                <div>
+                  <p class="text-sm font-medium text-gray-800 dark:text-white">Uploading Files</p>
+                  <p id="total-files" class="text-xs text-gray-500 dark:text-neutral-500">1 File</p>
+                </div>
+              </div>
+              <div class="inline-flex items-center gap-x-2">
+                <svg id="progress-loader" class="animate-spin flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg"
+                  fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99" />
+                </svg>
+
+                <div class="text-gray-500 hover:text-gray-800 dark:text-neutral-500 dark:hover:text-neutral-200"
+                  href="#">
+
+                  <svg id="progress-tick" class="flex-shrink-0 transition ease-in size-4 text-teal-500"
+                    xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                    <path
+                      d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z">
+                    </path>
+                  </svg>
+                </div>
+              </div>
+            </div>
+            <!-- End Uploading File Content -->
+
+            <!-- Progress Bar -->
+            <div class="flex items-center gap-x-3 whitespace-nowrap">
+              <div class="flex w-full h-2 bg-gray-200 rounded-full overflow-hidden dark:bg-neutral-700"
+                role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+                <div id="progress-bar"
+                  class="flex flex-col justify-center rounded-full overflow-hidden bg-teal-500 text-xs text-white text-center whitespace-nowrap transition duration-500"
+                  style="width: 100%; transform-origin: left; transition: width .25s linear;"></div>
+              </div>
+              <div class="w-6 text-end">
+                <span class="text-sm text-gray-800 dark:text-white">100%</span>
+              </div>
+            </div>
+            <!-- End Progress Bar -->
+          </div>
+          <!-- End File Uploading Progress Form -->
+          <!-- Download Link -->
+          <div id="after-upload" class="hidden flex flex-col items-center w-full">
+            <div class="flex w-full mt-8 justify-center">
+              <div class="w-full">
+                <div class="relative w-full">
+                  <label for="download-url" class="sr-only">Label</label>
+                  <input id="download-url" type="text"
+                    class="col-span-6 border text-gray-500 text-sm block w-full p-2.5 border-gray-300 rounded-lg dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 bg-gray-50 dark:hover:bg-bray-800 dark:bg-white/5 hover:bg-white/10 dark:hover:bg-white/10 cursor-text"
+                    disabled readonly>
+                  <button data-copy-to-clipboard-target="download-url"
+                    data-tooltip-target="tooltip-copy-npm-install-copy-button"
+                    class="absolute end-2 top-1/2 -translate-y-1/2 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg p-2 inline-flex items-center justify-center">
+                    <span id="default-icon">
+                      <svg class="w-3.5 h-3.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                        viewBox="0 0 18 20">
+                        <path
+                          d="M16 1h-3.278A1.992 1.992 0 0 0 11 0H7a1.993 1.993 0 0 0-1.722 1H2a2 2 0 0 0-2 2v15a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2Zm-3 14H5a1 1 0 0 1 0-2h8a1 1 0 0 1 0 2Zm0-4H5a1 1 0 0 1 0-2h8a1 1 0 1 1 0 2Zm0-5H5a1 1 0 0 1 0-2h2V2h4v2h2a1 1 0 1 1 0 2Z" />
+                      </svg>
+                    </span>
+                    <span id="success-icon" class="hidden inline-flex items-center">
+                      <svg class="w-3.5 h-3.5 text-blue-700 dark:text-blue-500" aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 12">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M1 5.917 5.724 10.5 15 1.5" />
+                      </svg>
+                    </span>
+                  </button>
+                  <div id="tooltip-copy-npm-install-copy-button" role="tooltip"
+                    class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                    <span id="default-tooltip-message">Copy to clipboard</span>
+                    <span id="success-tooltip-message" class="hidden">Copied!</span>
+                    <div class="tooltip-arrow" data-popper-arrow></div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            <div class="m-2">
+              Or Send via Email
+            </div>
+            <!-- Send Mail Form -->
+            <div class="border-gray-300 rounded-lg dark:border-gray-600 bg-gray-50 dark:bg-white/5 w-full p-5">
+              <form id="email-form" class="max-w-md mx-auto">
+                <div class="relative z-0 w-full mb-5 group">
+                  <input type="text" name="floating_first_name" id="floating_first_name"
+                    class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                    placeholder=" " required />
+                  <label for="floating_first_name"
+                    class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Your
+                    Name</label>
+                </div>
+                <div class="grid md:grid-cols-2 md:gap-6">
+                  <div class="relative z-0 w-full mb-5 group">
+                    <input type="email" name="senderMail" id="floating_email"
+                      class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                      placeholder=" " required />
+                    <label for="floating_email"
+                      class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Your
+                      Email</label>
+                  </div>
+                  <div class="relative z-0 w-full mb-5 group">
+                    <input type="email" name="receiverMail" id="floating_email"
+                      class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                      placeholder=" " required />
+                    <label for="floating_email"
+                      class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Receiver's
+                      Email</label>
+                  </div>
+                </div>
+            </div>
+            <button type="submit"
+              class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mt-5 lg:mt-8">Send
+              Email</button>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <!-- Toast -->
+    <div id="email-toast" class="flex justify-center">
+      <div
+        class="max-w-xs origin-bottom bg-white border border-gray-200 rounded-xl shadow-lg dark:bg-neutral-800 dark:border-neutral-700" style="position: absolute; bottom: 10px; left: 50%; transform: translate(-50%, 60px); transition: transform ease-in-out 0.2s;"
+        role="alert">
+        <div class="flex p-4">
+          <div class="flex-shrink-0">
+            <svg class="flex-shrink-0 size-4 text-teal-500 mt-0.5" xmlns="http://www.w3.org/2000/svg" width="16"
+              height="16" fill="currentColor" viewBox="0 0 16 16">
+              <path
+                d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z">
+              </path>
+            </svg>
+          </div>
+          <div class="ms-3">
+            <p class="text-sm text-gray-100 dark:text-neutral-100">
+              Email Sent Successfully
+            </p>
+          </div>
+        </div>
+      </div>
+      <!-- End Toast -->
+    </div>
+  </div>
+
+  <!-- File Upload Progress Bar -->
+
+
+
+  <script src="../js/preline.js"></script>
+  <script src="../js/flowbite.min.js"></script>
+  <script src="../index.js"></script>
+
+</body>
+
+</html>
